@@ -1,30 +1,36 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[11]:
+# In[1]:
 
 
+# Import libraries
 import numpy as np
 import cv2 as cv
 import matplotlib.pyplot as plt
 
 
-# In[12]:
+# In[2]:
 
 
+# Load input image in grayscale
 img = cv.imread('hitchcock.png', 0)
 kernel = np.ones((5,5), np.uint8)  
 
+# Functions
 imgEroded = cv.erode(img, kernel)
 imgDilate = cv.dilate(img, kernel)
 imgOpened = cv.morphologyEx(img, cv.MORPH_OPEN, kernel)
 imgClosed = cv.morphologyEx(img, cv.MORPH_CLOSE, kernel)
 
+# Image contour definition
 Contour1 = img - imgEroded
 Contour2 = imgDilate - img
 
+# Output image resizing
 plt.figure(figsize=(10,10))
 
+# Alignment, ordering and display of the output images
 plt.subplot(5,5,1)
 plt.title("Original image:")
 plt.imshow(img, cmap = 'gray')
@@ -44,12 +50,6 @@ plt.imshow(Contour1, cmap = 'gray')
 plt.subplot(5,5,5)
 plt.title("Image outline2:")
 plt.imshow(Contour2, cmap = 'gray')
-
-
-
-# In[ ]:
-
-
 
 
 
