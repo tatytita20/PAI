@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[1]:
 
 
 import numpy as np
@@ -10,10 +10,10 @@ import matplotlib.pyplot as plt
 import random
 
 
-# In[ ]:
+# In[2]:
 
 
-def grassfire_transform(image, mask):
+def grassfire_propagation(image, mask):
    
     # Binary threshold
     _, imageThresh = cv.threshold(image, 127, 255, cv.THRESH_BINARY)   
@@ -40,16 +40,16 @@ def grassfire_transform(image, mask):
                 
                 # Color assignment
                 cv.floodFill(imageOut, grassfire, (x,y), (Blue, Green, Red), flags = mask)
-                return imageOut
+    return imageOut
 
     # 2nd pass
     TestImg = ['Lenna.png', 'particles.png'] 
     for NameImg in TestImg:
-        print(NameImg.title())
+        print(NameImg.title ())
         picture = cv.imread(+NameImg, cv.IMREAD_GRAYSCALE)
-        picture2 = grassfire_transform(picture, 2)
-        picture4 = grassfire_transform(picture, 4)
-        plt.figure(figsize=(12,12));
+        picture2 = grassfire_propagation(picture, 2)
+        picture4 = grassfire_propagation(picture, 4)
+        plt.figure(figsize=(10,10));
         plt.subplot(1,3,1);
         plt.title('Original image: ' + NameImg);
         plt.imshow(picture, cmap = 'gray');
