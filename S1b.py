@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[16]:
+# In[ ]:
 
 
 import numpy as np
@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import random
 
 
-# In[17]:
+# In[ ]:
 
 
 def grassfire_transform(image, mask):
@@ -32,32 +32,33 @@ def grassfire_transform(image, mask):
         for y in range(w):
             if imageThresh[x, y] == 255: # Pixel in contour
                
-                # Generate random color for the region.
-                red = random.randint(0,255)
-                green = random.randint(0,255)
-                blue = random.randint(0,255)
+                # Random color generator
+                Blue = random.randint(0,255)
+                Green = random.randint(0,255)
+                Red = random.randint(0,255)
+               
                 
-                # Identify the connections and assign the random color.
-                cv.floodFill(imageOut, grassfire, (x,y), (red,green,blue), flags = mask)
+                # Color assignment
+                cv.floodFill(imageOut, grassfire, (x,y), (Blue, Green, Red), flags = mask)
                 return imageOut
 
     # 2nd pass
     TestImg = ['Lenna.png', 'particles.png'] 
     for NameImg in TestImg:
-        print(NameImg)
+        print(NameImg.title())
         picture = cv.imread(+NameImg, cv.IMREAD_GRAYSCALE)
+        picture2 = grassfire_transform(picture, 2)
         picture4 = grassfire_transform(picture, 4)
-        picture8 = grassfire_transform(picture, 8)
         plt.figure(figsize=(12,12));
         plt.subplot(1,3,1);
         plt.title('Original image: ' + NameImg);
         plt.imshow(picture, cmap = 'gray');
         plt.subplot(1,3,2);
         plt.title("Grass fire image:");
-        plt.imshow(picture1, cmap = 'gray');
+        plt.imshow(picture2, cmap = 'gray');
         plt.subplot(1,3,3);
         plt.title("Grass fire image:");
-        plt.imshow(picture2, cmap = 'gray');
+        plt.imshow(picture4, cmap = 'gray');
         plt.show()
 
 
