@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[3]:
 
 
 # Import libraries
@@ -10,12 +10,12 @@ import cv2 as cv
 import matplotlib.pyplot as plt
 
 
-# In[2]:
+# In[4]:
 
 
 # Load input image in grayscale
 img = cv.imread('hitchcock.png', 0)
-kernel = np.ones((5,5), np.uint8)  
+kernel = np.ones((3,3), np.uint8)  
 
 # Functions
 imgEroded = cv.erode(img, kernel)
@@ -28,7 +28,7 @@ Contour1 = img - imgEroded
 Contour2 = imgDilate - img
 
 # Output image resizing
-plt.figure(figsize=(10,10))
+plt.figure(figsize=(15,15))
 
 # Alignment, ordering and display of the output images
 plt.subplot(5,5,1)
@@ -50,6 +50,7 @@ plt.imshow(Contour1, cmap = 'gray')
 plt.subplot(5,5,5)
 plt.title("Image outline2:")
 plt.imshow(Contour2, cmap = 'gray')
+plt.show ()
 
 
 
